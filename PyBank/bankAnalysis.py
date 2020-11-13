@@ -11,28 +11,30 @@ with open(csvpath) as bankRecords:
  #skipping header row   
     header = next(csvreader)
 #defiining variables
-    months = len(list(csvreader)) #reads all the rows in the csv and outputs that number
     dates = []
     profitLoss = []
     change = []
     
 
+
 #For loop to cycle through each column of data and assign the column to the variable array
-    for row in bankRecords:
+    for row in csvreader:
         dates.append(row[0])
         profitLoss.append(float(row[1]))
     
+    months = len(dates)
     totalProfit = sum(profitLoss)
 
     
 #For loop to compare the dates between the one before and figure out the profits gained or lost
     for i in range(1, len(profitLoss)):
-        change.append(profitLoss[i+1] - profitLoss[i])
-        avgProfitLoss = sum(change)/len(change)
+        change.append(profitLoss[i] - profitLoss[i-1])
+
+        avgProfitLoss = (sum(change)/len(change))
         maxProfit = max(change)
         minProfit = min(change)
-        maxDate = str(dates[profitLoss.index(maxProfit)])
-        minDate = str(dates[profitLoss.index(minProfit)])
+        maxDate = str(dates[change.index(maxProfit)])
+        minDate = str(dates[change.index(minProfit)])
 
 
 #Outputting results
@@ -41,7 +43,7 @@ with open(csvpath) as bankRecords:
     print("---------------------------")
     print(f"Total Months: {months}")
     print(f"Total: ${totalProfit}")
-    print(f"Avereage Change: ${avgProfitLoss}")
+    print(f"Avereage Change: ${round(avgProfitLoss)}")
     print(f"Greatest Increase in Profits: {maxDate} (${maxProfit})")
     print(f"Greatest Decrease in Profits: {minDate} (${minProfit})")
 
