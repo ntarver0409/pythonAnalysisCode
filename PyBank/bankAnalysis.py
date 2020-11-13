@@ -5,7 +5,7 @@ import csv
 #defining pathway
 csvpath = os.path.join('Resources', 'budget_data.csv')
 
-with open(csvpath) as bankRecords:
+with open(csvpath, 'r+') as bankRecords:
 
     csvreader = csv.reader(bankRecords)
  #skipping header row   
@@ -43,10 +43,16 @@ with open(csvpath) as bankRecords:
     print("---------------------------")
     print(f"Total Months: {months}")
     print(f"Total: ${totalProfit}")
-    print(f"Avereage Change: ${round(avgProfitLoss)}")
+    print(f"Average Change: ${round(avgProfitLoss)}")
     print(f"Greatest Increase in Profits: {maxDate} (${maxProfit})")
     print(f"Greatest Decrease in Profits: {minDate} (${minProfit})")
 
-
-    
-
+#writing my results to a .txt file
+with open("bankOutput.txt", "w") as f:
+    print(f"Financial Analysis", file=f)
+    print("---------------------------", file=f)
+    print(f"Total Months: {months}", file=f)
+    print(f"Total: ${totalProfit}", file=f)
+    print(f"Average Change: ${round(avgProfitLoss)}", file=f)
+    print(f"Greatest Increase in Profits: {maxDate} (${maxProfit})", file=f)
+    print(f"Greatest Decrease in Profits: {minDate} (${minProfit})", file=f)
