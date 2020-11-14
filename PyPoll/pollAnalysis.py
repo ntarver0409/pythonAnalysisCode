@@ -28,7 +28,7 @@ with open(csvpath) as electionData:
             correyCount = correyCount + 1
         elif row[2] == "Li":
             liCount = liCount + 1
-        else:
+        elif row[2] == "O'Tooley":
             tooleyCount = tooleyCount + 1
             
     
@@ -52,7 +52,7 @@ with open(csvpath) as electionData:
 
 
 
-
+#Printing results
 
 print(f"Election Results")
 print("-------------------------")
@@ -66,6 +66,19 @@ print("-------------------------")
 print(f"Winner: {winner}")
 print("-------------------------")
 
+#Writing .txt file
+with open("pollResults.txt", "w") as f:
+    print(f"Election Results", file=f)
+    print("-------------------------", file=f)
+    print(f"Total Votes: {numVotes}", file=f)
+    print("-------------------------", file=f)
+    print(f"Khan: {khanPercent} ({khanCount})", file=f)
+    print(f"Correy: {correyPercent} ({correyCount})", file=f)
+    print(f"Li: {liPercent} ({liCount})", file=f)
+    print(f"O'Tooley: {tooleyPercent} ({tooleyCount})", file=f)
+    print("-------------------------", file=f)
+    print(f"Winner: {winner}", file=f)
+    print("-------------------------", file=f)
 
 
      
