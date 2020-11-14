@@ -38,8 +38,15 @@ with open(csvpath) as electionData:
     correyPercent = "{:.3%}".format(correyCount/numVotes)
     liPercent = "{:.3%}".format(liCount/numVotes)
     tooleyPercent = "{:.3%}".format(tooleyCount/numVotes)
-
-
+#Comparing the percentages to find the winner
+    if khanPercent > correyPercent and khanPercent > liPercent and khanPercent > tooleyPercent:
+        winner = "Khan"
+    elif correyPercent > khanPercent and correyPercent > liPercent and correyPercent > tooleyPercent:
+        winner = "Correy"
+    elif liPercent > khanPercent and liPercent > correyPercent and liPercent > tooleyPercent:
+        winner = "Li"
+    elif tooleyPercent > khanPercent and tooleyPercent > correyPercent and tooleyPercent > khanPercent:
+        winner = "O'Tooley"
 
 
 
@@ -52,6 +59,13 @@ print("-------------------------")
 print(f"Total Votes: {numVotes}")
 print("-------------------------")
 print(f"Khan: {khanPercent} ({khanCount})")
+print(f"Correy: {correyPercent} ({correyCount})")
+print(f"Li: {liPercent} ({liCount})")
+print(f"O'Tooley: {tooleyPercent} ({tooleyCount})")
+print("-------------------------")
+print(f"Winner: {winner}")
+print("-------------------------")
+
 
 
      
